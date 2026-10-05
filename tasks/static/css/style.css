@@ -1,0 +1,114 @@
+/* Custom Styles for TaskFlow */
+
+/* Smooth scrollbar for webkit */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Base transitions */
+body {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Checkbox animations */
+@keyframes check {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+button[type="submit"] i.text-green-500 {
+    animation: check 0.3s ease-in-out;
+}
+
+/* Toast animations */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+.toast {
+    animation: slideIn 0.3s ease forwards;
+}
+
+.toast.hiding {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+/* Form inputs focus styles override for dark mode */
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* Dropdown animation */
+.dropdown-menu {
+    transform-origin: top right;
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+/* Hide modal initially without flicker */
+[role="dialog"].hidden {
+    display: none !important;
+}
+
+/* Modal transitions */
+.modal-enter {
+    opacity: 0;
+}
+.modal-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-out;
+}
+.modal-enter .transform {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+}
+.modal-enter-active .transform {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.modal-leave {
+    opacity: 1;
+}
+.modal-leave-active {
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+}
+.modal-leave .transform {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+.modal-leave-active .transform {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+    transition: opacity 150ms ease-in, transform 150ms ease-in;
+}
